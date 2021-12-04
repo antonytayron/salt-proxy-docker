@@ -1,11 +1,30 @@
-version: '2.1'
+version: '3'
 
 services:
-  my_device:
+  device-01:
     image: antonytayron/salt-proxy:latest
-    container_name: my_device
+    container_name: device-01
     volumes:
-      - ./proxy_pki:/etc/salt/pki/proxy
+      - ./salt-proxy/device-01:/etc/salt/pki/proxy
     environment:
-      - LOG_LEVEL:INFO
-      - PROXYID:my_device
+      - LOG_LEVEL=info
+      - PROXYID=device-01
+      - MASTER=saltmaster.exemple.com
+  device-02:
+    image: antonytayron/salt-proxy:latest
+    container_name: device-02
+    volumes:
+      - ./salt-proxy/device-02:/etc/salt/pki/proxy
+    environment:
+      - LOG_LEVEL=info
+      - PROXYID=device-02
+      - MASTER=saltmaster.exemple.com
+  device-03:
+    image: antonytayron/salt-proxy:latest
+    container_name: device-03
+    volumes:
+      - ./salt-proxy/device-03:/etc/salt/pki/proxy
+    environment:
+      - LOG_LEVEL=info
+      - PROXYID=mdevice-03
+      - MASTER=saltmaster.exemple.com
