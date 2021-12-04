@@ -1,27 +1,11 @@
 version: '2.1'
 
 services:
-  salt-master:
-    image: mirceaulinic/salt-master:${VERSION}
-    hostname: salt-master
-    container_name: salt-master
-    environment:
-      - LOG_LEVEL
+  my_device:
+    image: antonytayron/salt-proxy:latest
+    container_name: my_device
     volumes:
-      - ./master:/etc/salt/master
-      - ./pillar/:/etc/salt/pillar/
-      - ./states/:/etc/salt/states/
-      - ${SALT_CLONE_DIR}/salt/:/usr/lib/python2.7/dist-packages/salt/
-  salt-proxy:
-    image: mirceaulinic/salt-proxy:${VERSION}
-    hostname: ${PROXYID}
-    container_name: salt-proxy-${PROXYID}
-    volumes:
-      - ./proxy:/etc/salt/proxy
-      - ./proxy.d/:/etc/salt/proxy.d/
-      - ${SALT_CLONE_DIR}/salt/:/usr/lib/python2.7/dist-packages/salt/
+      - ./proxy_pki:/etc/salt/pki/proxy
     environment:
-      - LOG_LEVEL
-      - PROXYID
-    depends_on:
-      - salt-master
+      - LOG_LEVEL:INFO
+      - PROXYID:my_device
