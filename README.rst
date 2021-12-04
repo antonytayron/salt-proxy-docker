@@ -16,7 +16,7 @@ Usage
 
      cd salt-proxy-docker
 
-3. In Dockerfile Change de architecture (amd64 or arm64).
+3. In Dockerfile Change de architecture var (amd64 or arm64).
 
 4. Start using it:
 
