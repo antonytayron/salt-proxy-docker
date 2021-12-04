@@ -1,4 +1,4 @@
-salt-docker
+salt-Proxy-docker
 ===========
 
 A collection of Docker files and other script to easily manage my own Salt 
