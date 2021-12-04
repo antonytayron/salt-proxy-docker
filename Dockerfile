@@ -13,21 +13,11 @@ RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 
 RUN apt update && apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-dev python-cffi
 
-#RUN pip install --upgrade pip \
-#&& pip install --upgrade pip setuptools wheel \
-#&& pip install p5py \
-#&& pip install PEP517 \
-#&& pip install napalm
+RUN pip install --upgrade pip \
+&& pip install napalm
 
-COPY dist-packages/ /usr/local/lib/python3/
-
-#RUN pip install napalm
-
-## Copy the Proxy config file
 ADD proxy /etc/salt/proxy
 
-# Add Run File
 ADD run-proxy.sh /usr/local/bin/run-proxy.sh
 
-# Run Command
 CMD "/usr/local/bin/run-proxy.sh"
