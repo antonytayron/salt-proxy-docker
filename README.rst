@@ -11,52 +11,47 @@ Usage
 
    .. code-block:: bash
 
-     git clone git@github.com:mirceaulinic/salt-docker.git
+     git clone git@github.com:antonytayron/salt-proxy-docker.git
 
 2. Change dir:
 
    .. code-block:: bash
 
-     cd salt-docker
+     cd salt-proxy-docker
 
-3. Start using it:
+3. In Dockerfile Change de architecture (amd64 or arm64):
 
    .. code-block:: bash
 
-     make start
+      FROM ubuntu:20.04
 
-Example output:
+      MAINTAINER antonytayron@midgard.com.br
 
-.. code-block:: bash
+      RUN apt update && apt install curl -y
 
-  $ make PROXYID=dummy start
-  docker-compose up -d
-  Creating salt-proxy-dummy ...
-  Creating salt-master ...
-  Creating salt-proxy-dummy
-  Creating salt-master ... done
+      RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/20.04/arm64/latest/salt-archive-keyring.gpg \
+      && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=arm64] https://repo.saltproject.io/py3/ubuntu/20.04/arm64/latest focal main" | tee /etc/apt/sources.list.d/salt.list
 
-Run a test state from the Master side:
+      RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
+      && apt-get install -y tzdata \
+      && dpkg-reconfigure --frontend noninteractive tzdata
 
-.. code-block:: bash
+      RUN apt update && apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-dev python-cffi
 
-  $ docker exec -it salt-master bash
-  root@salt-master:/# salt dummy state.apply test
-  dummy:
-  ----------
-            ID: Yay it works
-      Function: test.succeed_without_changes
-        Result: True
-       Comment: Success!
-       Started: 11:57:21.295204
-      Duration: 0.76 ms
-       Changes:
+      RUN pip install --upgrade pip \
+      && pip install napalm
 
-  Summary for dummy
-  ------------
-  Succeeded: 1
-  Failed:    0
-  ------------
-  Total states run:     1
-  Total run time:   0.760 ms
-  root@salt-master:/# %
+      ADD proxy /etc/salt/proxy
+
+      ADD run-proxy.sh /usr/local/bin/run-proxy.sh
+
+      CMD "/usr/local/bin/run-proxy.sh"
+
+4. Start using it:
+
+   .. code-block:: bash
+
+     docker build -t antonytayron/salt-proxy .
+
+=====================
+This project is based on "mirceaulinic/salt-docker"
