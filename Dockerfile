@@ -8,8 +8,8 @@ ARG TARGETARCH
 RUN echo "I'm building for $TARGETARCH"
 
 RUN apt update \
-&& apt install curl -y \
-&& rm -rf /var/lib/apt/lists
+&& rm -rf /var/lib/apt/lists \
+&& apt install curl -y 
 
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/20.04/$TARGETARCH/latest/salt-archive-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=$TARGETARCH] https://repo.saltproject.io/py3/ubuntu/20.04/$TARGETARCH/latest focal main" | tee /etc/apt/sources.list.d/salt.list
