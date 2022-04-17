@@ -14,27 +14,25 @@ Usage
 
 2. Change dir:
 
-   .. code-block:: bash
-
-     cd salt-proxy-docker
+    ```bash
+    cd salt-proxy-docker
+    ```
 
 3. In Dockerfile Change de architecture var (amd64 or arm64).
 
 4. Start using it:
 
-   .. code-block:: bash
-
-     docker build -t antonytayron/salt-proxy .
+    ```bash
+    docker build -t antonytayron/salt-proxy .
+    ```
 
 
 Run Image
 -----
 
-   .. code-block:: bash
-   
-     docker run -it -e PROXYID=device -e MASTER=salt-master-IP-or-DNS antonytayron/salt-proxy
-
-
+    ```bash
+    docker run -it -e PROXYID=device -e MASTER=salt-master-IP-or-DNS antonytayron/salt-proxy
+    ```
 
 ~~~~~~~~~~
 
