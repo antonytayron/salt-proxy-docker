@@ -7,10 +7,10 @@ Usage
 -----
 
 1. Clone this repo:
-
-   .. code-block:: bash
-
-     git clone git@github.com:antonytayron/salt-proxy-docker.git
+  
+    ```bash
+    git clone git@github.com:antonytayron/salt-proxy-docker.git
+    ```
 
 2. Change dir:
 
