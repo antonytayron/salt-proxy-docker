@@ -5,9 +5,7 @@ LABEL author="antonytayron@midgard.com.br"
 #Use arm64 or amd64
 ARG TARGETARCH
 
-RUN 
-
-echo "I'm building for $TARGETPLATFORM"
+RUN echo "I'm building for $TARGETPLATFORM"
 
 RUN apt update && apt install curl -y
 
