@@ -1,6 +1,8 @@
 salt-Proxy-docker
 ===========
 
+[![Salt-Proxy on Docker CI](https://github.com/antonytayron/salt-proxy-docker/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/antonytayron/salt-proxy-docker/actions/workflows/docker-image.yml)
+
 Usage
 -----
 
