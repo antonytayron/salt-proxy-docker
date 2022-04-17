@@ -5,12 +5,12 @@ LABEL author="antonytayron@midgard.com.br"
 #Use arm64 or amd64
 ARG TARGETARCH
 
-RUN echo "I'm building for $TARGETPLATFORM"
+RUN echo "I'm building for $TARGETARCH"
 
 RUN apt update && apt install curl -y
 
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/20.04/$ARCH/latest/salt-archive-keyring.gpg \
-&& echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=$ARCH] https://repo.saltproject.io/py3/ubuntu/20.04/$ARCH/latest focal main" | tee /etc/apt/sources.list.d/salt.list
+&& echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg arch=$TARGETARCH] https://repo.saltproject.io/py3/ubuntu/20.04/$TARGETARCH/latest focal main" | tee /etc/apt/sources.list.d/salt.list
 
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 && apt-get install -y tzdata \
