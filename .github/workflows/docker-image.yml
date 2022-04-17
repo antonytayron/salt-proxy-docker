@@ -2,12 +2,14 @@ name: Salt-Proxy on Docker CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths-ignore:
+      - '**/README.md'
+      - '**/.github/*'
   pull_request:
-    branches: [ main ]
-  paths-ignore:
-    - '**/README.md'
-    - '**/.github/*'
+    branches:
+      - main
 
 jobs:
   docker:
