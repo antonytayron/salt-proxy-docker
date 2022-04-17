@@ -7,21 +7,24 @@ on:
     branches: [ main ]
 
 jobs:
-
-  build:
-
+  docer:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Build the Docker image
-      #- uses: actions/checkout@v3
-          run: docker build . --file Dockerfile --tag antonytayron/salt-proxy:latest
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
-    # - name: Login to Docker Hub
-    # - uses: docker/login-action@v1
-    #   with:
-    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # - name: Build the Docker image
+      # - uses: actions/checkout@v3
+      #     run: docker build . --file Dockerfile --tag antonytayron/salt-proxy:latest
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     # - name: Build and push
     #   uses: docker/build-push-action@v2
