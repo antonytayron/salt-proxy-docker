@@ -18,9 +18,7 @@ Usage
     cd salt-proxy-docker
     ```
 
-3. In Dockerfile Change de architecture var (amd64 or arm64).
-
-4. Start using it:
+3. Start using it:
 
     ```bash
     docker build -t antonytayron/salt-proxy .
