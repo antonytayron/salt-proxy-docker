@@ -13,18 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     - name: Build the Docker image
+      uses: actions/checkout@v3
       run: docker build . --file Dockerfile --tag antonytayron/salt-proxy:latest
 
     - name: Login to Docker Hub
-    - uses: docker/login-action@v1
+      uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build and push
-    - uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v2
       with:
         context: .
         platforms: linux/amd64,linux/arm/v7
