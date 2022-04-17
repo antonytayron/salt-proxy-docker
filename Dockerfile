@@ -21,8 +21,10 @@ RUN apt update && apt install -y python3 python3-pip salt-minion libssl-dev libf
 RUN pip install --upgrade pip \
 && pip install napalm
 
+RUN rm -rf /var/lib/apt/lists
+
 ADD proxy /etc/salt/proxy
 
-ADD run-proxy.sh /usr/local/bin/run-proxy.sh
+COPY run-proxy.sh /usr/local/bin/run-proxy.sh
 
 CMD "/usr/local/bin/run-proxy.sh"
