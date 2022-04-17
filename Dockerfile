@@ -14,16 +14,17 @@ RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.salt
 
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 && apt-get install -y tzdata \
-&& dpkg-reconfigure --frontend noninteractive tzdata
+&& dpkg-reconfigure --frontend noninteractive tzdata \
+&& rm -rf /var/lib/apt/lists
 
-RUN apt update && apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-dev python-cffi
+RUN apt update \
+&& apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-dev python-cffi \
+&& rm -rf /var/lib/apt/lists
 
 RUN pip install --upgrade pip \
 && pip install napalm
 
-RUN rm -rf /var/lib/apt/lists
-
-ADD proxy /etc/salt/proxy
+COPY proxy /etc/salt/proxy
 
 COPY run-proxy.sh /usr/local/bin/run-proxy.sh
 
