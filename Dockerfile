@@ -8,7 +8,6 @@ ARG TARGETARCH
 RUN echo "I'm building for $TARGETARCH"
 
 RUN apt update \
-&& rm -rf /var/lib/apt/lists \
 && apt install curl -y 
 
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/20.04/$TARGETARCH/latest/salt-archive-keyring.gpg \
