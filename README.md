@@ -30,10 +30,7 @@ Usage
 Run Image
 -----
 
-    ```bash
     docker run -it -e PROXYID=device -e MASTER=salt-master-IP-or-DNS antonytayron/salt-proxy
-    ```
 
 ~~~~~~~~~~
-
 This project is based on "mirceaulinic/salt-docker"
