@@ -32,7 +32,7 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: antonytayron/salt-proxy:latest,antonytayron/salt-proxy:3002
+        tags: antonytayron/salt-proxy:latest,antonytayron/salt-proxy:3005
 
     # - uses: azure/container-scan@v0
     #   with:
