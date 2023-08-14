@@ -18,7 +18,7 @@ RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 && dpkg-reconfigure --frontend noninteractive tzdata \
 && rm -rf /var/lib/apt/lists
 
-RUN apt update \
+RUN apt update && apt upgrade -y\
 && apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-dev python-cffi \
 && rm -rf /var/lib/apt/lists
 
