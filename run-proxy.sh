@@ -1,8 +1,6 @@
 #!/bin/bash
-
 # Salt-Proxy Run Script
 #
-
 set -e
 
 # Log Level
