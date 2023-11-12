@@ -34,6 +34,7 @@ jobs:
         push: true
         tags: antonytayron/salt-proxy:latest,antonytayron/salt-proxy:3005
 
-    # - uses: azure/container-scan@v0
-    #   with:
-    #     image-name: antonytayron/salt-proxy:latest
+  security-scan:
+    - uses: azure/container-scan@v0
+      with:
+        image-name: antonytayron/salt-proxy:latest
