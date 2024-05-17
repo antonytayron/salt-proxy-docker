@@ -11,7 +11,7 @@ RUN apt update \
 && apt install curl -y 
 
 RUN curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://repo.saltproject.io/salt/py3/ubuntu/22.04/$TARGETARCH/SALT-PROJECT-GPG-PUBKEY-2023.gpg \
-&& echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.gpg arch=$TARGETARCH] https://repo.saltproject.io/salt/py3/ubuntu/22.04/$TARGETARCH/3006 jammy main" | tee /etc/apt/sources.list.d/salt.list
+&& echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.gpg arch=$TARGETARCH] https://repo.saltproject.io/salt/py3/ubuntu/22.04/$TARGETARCH/3007 jammy main" | tee /etc/apt/sources.list.d/salt.list
 
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 && apt-get install -y tzdata \
