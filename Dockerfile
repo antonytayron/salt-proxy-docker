@@ -23,6 +23,7 @@ RUN apt update && apt upgrade -y\
 && rm -rf /var/lib/apt/lists
 
 RUN pip3 install napalm 
+RUN pip install napalm
 
 COPY proxy /etc/salt/proxy
 
