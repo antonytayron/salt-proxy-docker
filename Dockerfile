@@ -19,7 +19,7 @@ RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
 && rm -rf /var/lib/apt/lists
 
 RUN apt update && apt upgrade -y\
-&& apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python-cffi \
+&& apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python3-dev python3-cffi \
 && rm -rf /var/lib/apt/lists
 
 RUN pip install --upgrade pip \
