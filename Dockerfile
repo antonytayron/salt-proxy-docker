@@ -22,8 +22,7 @@ RUN apt update && apt upgrade -y\
 && apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python3-dev python3-cffi \
 && rm -rf /var/lib/apt/lists
 
-RUN pip3 install napalm 
-RUN pip install napalm
+RUN salt-pip install napalm
 
 COPY proxy /etc/salt/proxy
 
