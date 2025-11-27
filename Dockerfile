@@ -7,20 +7,21 @@ ARG TARGETARCH
 
 RUN echo "Building for $TARGETARCH"
 
-RUN apt update \
-&& apt install curl -y 
+RUN apt update && \
+    apt install curl -y 
 
-RUN curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://repo.saltproject.io/salt/py3/ubuntu/24.04/$TARGETARCH/SALT-PROJECT-GPG-PUBKEY-2023.gpg \
-&& echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.gpg arch=$TARGETARCH] https://repo.saltproject.io/salt/py3/ubuntu/24.04/$TARGETARCH/3007 noble main" | tee /etc/apt/sources.list.d/salt.list
+RUN mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring.pgp && \
+    curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.sources | sudo tee /etc/apt/sources.list.d/salt.sources
 
-RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime \
-&& apt-get install -y tzdata \
-&& dpkg-reconfigure --frontend noninteractive tzdata \
-&& rm -rf /var/lib/apt/lists
+RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
+    apt-get install -y tzdata && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
+    rm -rf /var/lib/apt/lists
 
-RUN apt update && apt upgrade -y \
-&& apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python3-dev python3-cffi \
-&& rm -rf /var/lib/apt/lists
+RUN apt update && apt upgrade -y && \
+    apt install -y python3 python3-pip salt-minion libssl-dev libffi-dev python3-dev python3-cffi && \
+    rm -rf /var/lib/apt/lists
 
 RUN salt-pip install napalm
 
